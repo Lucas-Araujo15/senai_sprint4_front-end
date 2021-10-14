@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conversão Temperatura</title>
+</head>
+
+<body>
+
+    <h1>Conversor de temperatura</h1>
+
+    <form id="formtemperatura">
+        <input type="number" required name="temperatura" id="temperatura">
+        <input type="checkbox" id="celcius" name="temperatura">Celcius</checkbox>
+        <input type="checkbox" id="fahrenheit" name="temperatura">Fahrenheit</checkbox>
+        <button type="submit" id="btnConverter">Converter</button>
+    </form>
+
+    <h2 class="resultado" id="numConversao"></h2>
+
+    <script>
+        var celcius = document.getElementById("celcius");
+        var fahrenheit = document.getElementById("fahrenheit");
+        var temperatura = document.getElementById("temperatura");
+        var button = document.getElementById("btnConverter");
+        var resultadoDom = document.getElementById("numConversao")
+        button.disabled = true;
+
+        temperatura.addEventListener('input', function () {
+            if (temperatura.value !== "") {
+                button.disabled = false;
+                button.addEventListener("click", function (pagina) {
+                    pagina.preventDefault();
+
+                    if (fahrenheit.checked == true & celcius.checked == false) {
+                        var resultado = temperatura.value * 1.8 + 32
+                        console.log(`${resultado} °F`);
+                        resultadoDom.innerHTML = `${resultado} °F`
+                        fahrenheit.checked = false;
+                    }
+                    else if (fahrenheit.checked == false & celcius.checked == true) {
+                        resultado = (temperatura.value - 32) / 1.8
+                        console.log(`${resultado} °C`);
+                        resultadoDom.innerHTML = `${resultado} °C`
+                        celcius.checked = false;
+                    }
+
+                    document.getElementsByTagName("input").value = "";
+                })
+            }
+            else {
+                button.disabled = true;
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
