@@ -1,0 +1,63 @@
+.secao-lista{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff
+}
+
+.secao-lista input{
+    height: 48px;
+    width: 500px;
+    border: 2px solid #A1B2CD;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.45);
+}
+
+body{
+    background-color: #282c34;
+}
+
+.secao-lista table{
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: 20px;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.45);
+}
+
+.secao-lista button{
+    background-color: rgb(66, 66, 194);
+    bottom: 16px;
+    background: #3485FF;    
+    border: 2px solid #3485FF;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 48px;
+    width: 90px;
+    color: #ffffff;
+    margin-left: 10px;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.45);
+}
+
+.secao-lista thead{
+    font-size: 17px;
+    text-transform: uppercase;
+    height: 50px;
+}
+
+
+
+.secao-lista td{
+    height: 50px;
+}
+
+
+.secao-lista tbody tr:hover{
+    background-color: #3485FF;
+}
