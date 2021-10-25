@@ -5,6 +5,7 @@ import Home from './pages/home/App';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import ListaGitHub from './pages/listaGithub/ListaGithub.jsx'
+import NotFound from './pages/notFound/NotFound.jsx'
 
 const routing = (
   <Router>
@@ -12,7 +13,8 @@ const routing = (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/listagithub" component={ListaGitHub} />
-        <Redirect to="/" />
+        <Route path="/notfound" component={NotFound} />
+        <Redirect to="/notfound" />
       </Switch>
     </div>
   </Router>

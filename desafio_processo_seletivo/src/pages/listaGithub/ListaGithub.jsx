@@ -9,9 +9,16 @@ class ListaGithub extends Component {
             listaUserGit: [],
             nomeUser: '',
             titulo: '',
-            teste:false
+            listagem: false,
+            qntRepos: 10,
         }
     };
+
+    quantidadeReposAdd = () => {
+        this.setState({
+            qntRepos: this.state.qntRepos + 5
+        })
+    }
 
     atualizaEstadoNome = async (event) => {
         await this.setState({
@@ -23,12 +30,15 @@ class ListaGithub extends Component {
 
         event.preventDefault();
 
+
+
         this.setState({
             titulo: this.state.nomeUser,
-            teste: true
+            qntRepos:10,
+            listagem: true
         })
 
-        fetch('https://api.github.com/users/' + this.state.nomeUser + '/repos?per_page=10&sort=created')
+        fetch('https://api.github.com/users/' + this.state.nomeUser + '/repos?sort=created')
 
             .then(resposta => resposta.json())
 
@@ -67,36 +77,37 @@ class ListaGithub extends Component {
 
                     {
                         this.state.listaUserGit.length > 0 ?
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>Descrição</th>
-                                        <th>Data de criação</th>
-                                        <th>Tamanho</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        this.state.listaUserGit.map((listaRepositorio) => {
-                                            return (
-                                                <tr key={listaRepositorio.id}>
-                                                    <td>{listaRepositorio.id}</td>
-                                                    <td>{listaRepositorio.name}</td>
-                                                    <td>{listaRepositorio.description}</td>
-                                                    <td>{listaRepositorio.created_at}</td>
-                                                    <td>{listaRepositorio.size}</td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Descrição</th>
+                                            <th>Data de criação</th>
+                                            <th>Tamanho</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            this.state.listaUserGit.slice(0, this.state.qntRepos).map((listaRepositorio) => {
+                                                return (
+                                                    <tr key={listaRepositorio.id}>
+                                                        <td>{listaRepositorio.id}</td>
+                                                        <td>{listaRepositorio.name}</td>
+                                                        <td>{listaRepositorio.description}</td>
+                                                        <td>{listaRepositorio.created_at}</td>
+                                                        <td>{listaRepositorio.size}</td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                                <button onClick={this.quantidadeReposAdd} style={this.state.listaUserGit.length >= 9 ? { display: '' } : { display: 'none' }}>Ver mais</button>
+                            </div>
                             :
-
-                            <h2 style={this.state.teste === false ? { display: 'none' } : { display: '' }}>Usuário não encontrado</h2>
+                            <h2 style={this.state.listagem === false ? { display: 'none' } : { display: '' }}>Usuário não encontrado</h2>
                     }
                 </section>
             </main>
